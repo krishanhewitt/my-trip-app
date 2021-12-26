@@ -6,7 +6,6 @@ import MyTrips from './components/trips_page/MyTrips'
 import Settings from './components/settings_page/Settings'
 
 
-
 function App() {
   return (
     <div>
