@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from './components/NavBar'
-import Home from './components/Home'
-import MyTrips from './components/MyTrips'
-import Settings from './components/Settings'
-
+import Home from './components/home_page/Home'
+import MyTrips from './components/trips_page/MyTrips'
+import Settings from './components/settings_page/Settings'
 
 
 function App() {
