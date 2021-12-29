@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from './components/NavBar'
 import Home from './components/home_page/Home'
 import MyTrips from './components/trips_page/MyTrips'
 import Settings from './components/settings_page/Settings'
+import CreateTrip from './components/trips_page/CreateTrip'
 
 
 function App() {
@@ -11,10 +11,11 @@ function App() {
     <div>
       <BrowserRouter>        
         <NavBar></NavBar>
-        <div className="content">
+        <div className="content mb-20 sm:mb-0">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="mytrips" element={<MyTrips />} />
+            <Route path="createtrip" element={<CreateTrip />} />
             <Route path="settings" element={<Settings />} />
           </Routes>
         </div>
