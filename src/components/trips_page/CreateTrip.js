@@ -49,67 +49,111 @@ class CreateTrip extends Component {
   render() {
     return (
       <div>
-        <Link to="/">Show Trip List</Link>
-        <br></br>
-        <h1>Add Trip</h1>
-        <p>Create new book</p>
+        <h1 className="text-center text-2xl mt-4">Add Trip</h1>
+        <p className="text-center text-md">Create new trip</p>
         <div>
-          <form noValidate onSubmit={this.onSubmit}>
-            <div>
-              <input
-                type="text"
-                placeholder="Name of the Trip"
-                name="name"
-                value={this.state.name}
-                onChange={this.onChange}
-              />
-            </div>
-            <br />
+          <form className="flex justify-center" noValidate onSubmit={this.onSubmit}>
+            {/* Name Field */}
+            <div className="mx-3 my-6">
+              <div className="flex">
+              <div className="w-full px-3 pb-3">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  htmlFor="new-trip-name"
+                >
+                  Trip Name
+                </label>
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  type="text"
+                  placeholder="Name"
+                  id="new-trip-name"
+                  value={this.state.name}
+                  onChange={this.onChange}
+                />
+              </div>
+              </div>
 
-            <div>
-              <input
-                type="date"
-                placeholder="Start Date"
-                name="startDate"
-                value={this.state.startDate}
-                onChange={this.onChange}
-              />
-            </div>
+              <div className="flex flex-col sm:flex-row">
+              {/* Origin Field */}
+              <div className="w-full md:w-1/2 px-3 pb-6">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  htmlFor="new-trip-origin"
+                >
+                  Trip Origin
+                </label>
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  type="text"
+                  placeholder="Starting Location"
+                  id="new-trip-origin"
+                  value={this.state.origin}
+                  onChange={this.onChange}
+                />
+              </div>
 
-            <div>
-              <input
-                type="date"
-                placeholder="End Date"
-                name="endDate"
-                value={this.state.endDate}
-                onChange={this.onChange}
-              />
-            </div>
+              {/* Destination Field */}
+              <div className="w-full md:w-1/2 px-3 pb-6">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  htmlFor="new-trip-destination"
+                >
+                  Trip Destination
+                </label>
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  type="text"
+                  placeholder="Ending Location"
+                  id="new-trip-destination"
+                  value={this.state.destination}
+                  onChange={this.onChange}
+                />
+              </div>
+              </div>
 
-            <div>
-              <input
-                type="text"
-                placeholder="Starting Location"
-                name="origin"
-                value={this.state.origin}
-                onChange={this.onChange}
-              />
-            </div>
+              <div className="flex flex-col sm:flex-row">
+              {/* Start Date Field */}
+              <div className="w-full md:w-1/2 px-3 pb-6">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  htmlFor="new-trip-start-date"
+                >
+                  Trip Start Date
+                </label>
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  type="date"
+                  placeholder="Start Date"
+                  id="new-trip-start-date"
+                  value={this.state.startDate}
+                  onChange={this.onChange}
+                />
+              </div>
 
-            <div>
-              <input
-                type="text"
-                placeholder="Ending Location"
-                name="destination"
-                value={this.state.destination}
-                onChange={this.onChange}
-              />
-            </div>
+              {/* End Date Field */}
+              <div className="w-full md:w-1/2 px-3 pb-6">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  htmlFor="new-trip-end-date"
+                >
+                  Trip End Date
+                </label>
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  type="date"
+                  placeholder="End Date"
+                  id="new-trip-end-date"
+                  value={this.state.endDate}
+                  onChange={this.onChange}
+                />
+              </div>
+              </div>
 
-            <input
-              type="submit"
-            />
-            
+              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-center m-auto flex">
+                Submit
+              </button>
+            </div>
           </form>
         </div>
       </div>
