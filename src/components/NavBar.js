@@ -13,7 +13,7 @@ function NavBar() {
               <Link to="/">Home</Link>
             </li>
             <li className="px-4">
-              <Link to="/mytrips">My Trips</Link>
+              <Link to="/showTripList">My Trips</Link>
             </li>
             <li className="px-4">
               <Link to="/settings">Settings</Link>
@@ -36,7 +36,7 @@ function NavBar() {
               </Link>
             </li>
             <li className="flex text-lg">
-              <Link to="/mytrips">
+              <Link to="/showTripList">
                 <Compass size={24} className="m-auto" />
                 My Trips
               </Link>

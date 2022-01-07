@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 class CreateTrip extends Component {
   constructor() {
     super();
+    //let navigate = useNavigate();
     this.state = {
       name: "",
       startDate: "",
@@ -13,12 +14,14 @@ class CreateTrip extends Component {
       destination: "",
     };
   }
+  
 
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
   onSubmit = (e) => {
+    console.log("submited the following: " + JSON.stringify(this.state));
     e.preventDefault();
 
     const data = {
@@ -32,6 +35,9 @@ class CreateTrip extends Component {
     axios
       .post("http://localhost:8082/api/trips", data)
       .then((res) => {
+        console.log("response: " + JSON.stringify(res));
+
+        //reset state
         this.setState({
           name: "",
           startDate: "",
@@ -39,10 +45,10 @@ class CreateTrip extends Component {
           origin: "",
           destination: "",
         });
-        this.props.history.push("/");
+        //navigate("/showTripList");
       })
       .catch((err) => {
-        console.log("Error in CreateTrip!");
+        console.log("Error in CreateTrip: " + err);
       });
   };
 
@@ -59,7 +65,7 @@ class CreateTrip extends Component {
               <div className="w-full px-3 pb-3">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  htmlFor="new-trip-name"
+                  htmlFor="name"
                 >
                   Trip Name
                 </label>
@@ -67,8 +73,8 @@ class CreateTrip extends Component {
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   type="text"
                   placeholder="Name"
-                  id="new-trip-name"
-                  value={this.state.name}
+                  name="name"
+                  defaultValue={this.state.name}
                   onChange={this.onChange}
                 />
               </div>
@@ -79,7 +85,7 @@ class CreateTrip extends Component {
               <div className="w-full md:w-1/2 px-3 pb-6">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  htmlFor="new-trip-origin"
+                  htmlFor="origin"
                 >
                   Trip Origin
                 </label>
@@ -87,8 +93,8 @@ class CreateTrip extends Component {
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   type="text"
                   placeholder="Starting Location"
-                  id="new-trip-origin"
-                  value={this.state.origin}
+                  name="origin"
+                  defaultValue={this.state.origin}
                   onChange={this.onChange}
                 />
               </div>
@@ -97,7 +103,7 @@ class CreateTrip extends Component {
               <div className="w-full md:w-1/2 px-3 pb-6">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  htmlFor="new-trip-destination"
+                  htmlFor="destination"
                 >
                   Trip Destination
                 </label>
@@ -105,8 +111,8 @@ class CreateTrip extends Component {
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   type="text"
                   placeholder="Ending Location"
-                  id="new-trip-destination"
-                  value={this.state.destination}
+                  name="destination"
+                  defaultValue={this.state.destination}
                   onChange={this.onChange}
                 />
               </div>
@@ -117,7 +123,7 @@ class CreateTrip extends Component {
               <div className="w-full md:w-1/2 px-3 pb-6">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  htmlFor="new-trip-start-date"
+                  htmlFor="startDate"
                 >
                   Trip Start Date
                 </label>
@@ -125,8 +131,8 @@ class CreateTrip extends Component {
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   type="date"
                   placeholder="Start Date"
-                  id="new-trip-start-date"
-                  value={this.state.startDate}
+                  name="startDate"
+                  defaultValue={this.state.startDate}
                   onChange={this.onChange}
                 />
               </div>
@@ -135,7 +141,7 @@ class CreateTrip extends Component {
               <div className="w-full md:w-1/2 px-3 pb-6">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  htmlFor="new-trip-end-date"
+                  htmlFor="endDate"
                 >
                   Trip End Date
                 </label>
@@ -143,8 +149,8 @@ class CreateTrip extends Component {
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   type="date"
                   placeholder="End Date"
-                  id="new-trip-end-date"
-                  value={this.state.endDate}
+                  name="endDate"
+                  defaultValue={this.state.endDate}
                   onChange={this.onChange}
                 />
               </div>
