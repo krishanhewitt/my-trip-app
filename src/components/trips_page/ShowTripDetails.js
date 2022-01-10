@@ -8,12 +8,13 @@ class ShowTripDetails extends Component {
     this.state = {
       trip: {},
     };
+    
   }
 
   componentDidMount() {
-    // console.log("Print id: " + this.props.match.params.id);
+    console.log(JSON.stringify(this.props));
     axios
-      .get("http://localhost:8082/api/trips/" + this.props.match.params.id)
+      .get("http://localhost:8082/api/trips/" + this.props.match.params._id)
       .then((res) => {
         // console.log("Print-showTripDetails-API-response: " + res.data);
         this.setState({
@@ -29,7 +30,7 @@ class ShowTripDetails extends Component {
     axios
       .delete("http://localhost:8082/api/trips/" + id)
       .then((res) => {
-        this.props.history.push("/");
+        //this.props.history.push("/");
       })
       .catch((err) => {
         console.log("Error form ShowTripDetails_deleteClick");

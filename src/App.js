@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from './components/NavBar'
 import Home from './components/home_page/Home'
 import ShowTripList from './components/trips_page/ShowTripList'
+import ShowTripDetails from './components/trips_page/ShowTripDetails'
 import Settings from './components/settings_page/Settings'
 import CreateTrip from './components/trips_page/CreateTrip'
 
@@ -17,6 +18,8 @@ function App() {
             <Route path="showTripList" element={<ShowTripList />} />
             <Route path="createtrip" element={<CreateTrip />} />
             <Route path="settings" element={<Settings />} />
+            <Route path="show-trip/:id" element={<ShowTripDetails />} />
+            
           </Routes>
         </div>
       </BrowserRouter>
