@@ -1,40 +1,34 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import TripCard from "./TripCard";
 
-class ShowTripList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      trips: [],
-    };
-  }
+const ShowTripList = () => {
 
-  componentDidMount() {
+  const [trips, setTrips] = useState([]);
+
+  useEffect(() => {
+    //request trip data
+    console.log("making request for trip data");
     axios
-      .get("http://localhost:8082/api/trips")
-      .then((res) => {
-        this.setState({
-          trips: res.data,
-        });
-      })
-      .catch((err) => {
-        console.log("Error from ShowTripList");
-      });
-  }
+    .get("http://localhost:8082/api/trips")
+    .then((res) => {
+      setTrips(res.data)
+    })
+    .catch((err) => {
+      console.log("Error from ShowTripList");
+    });
+  }, []);
 
-  render() {
-    const trips = this.state.trips;
-    console.log("PrintTrip: " + JSON.stringify(trips));
+    //create TripCard components using the data retrieved
     let tripList;
-
     if (!trips) {
       tripList = "there is no trip records!";
     } else {
       tripList = trips.map((trip, k) => <TripCard trip={trip} key={k} />);
     }
-
+  
+    //display 'My Trips' page 
     return (
       <div>
         <div className="flex flex-col">
@@ -51,7 +45,6 @@ class ShowTripList extends Component {
         </div>
       </div>
     );
-  }
 }
 
 export default ShowTripList;
