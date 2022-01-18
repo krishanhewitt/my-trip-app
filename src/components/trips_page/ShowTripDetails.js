@@ -72,7 +72,7 @@ const ShowTripDetails = () => {
 
   return (
     <div>
-      <h1 className="text-center text-2xl mt-4">Trip Details</h1>
+      <h1 className="text-center text-2xl mt-4">{trip.name}</h1>
       <p className="text-center text-md">View Trip Info</p>
       <div className="flex">
         <Link
