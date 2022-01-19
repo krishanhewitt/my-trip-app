@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from './components/NavBar'
-import Home from './components/home_page/Home'
-import ShowTripList from './components/trips_page/ShowTripList'
-import ShowTripDetails from './components/trips_page/ShowTripDetails'
-import Settings from './components/settings_page/Settings'
-import CreateTrip from './components/trips_page/CreateTrip'
+import Home from './components/home/Home'
+import ShowTripList from './components/trips/ShowTripList'
+import ShowTripDetails from './components/trips/ShowTripDetails'
+import Settings from './components/settings/Settings'
+import CreateTrip from './components/trips/CreateTrip'
 
 
 function App() {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import PrimaryBtn from "../common/PrimaryBtn";
 
 const ShowTripDetails = () => {
   const [trip, setTrip] = useState({});
@@ -75,30 +76,19 @@ const ShowTripDetails = () => {
       <h1 className="text-center text-2xl mt-4">{trip.name}</h1>
       <p className="text-center text-md">View Trip Info</p>
       <div className="flex">
-        <Link
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-center m-auto"
-          to="/showTripList"
-        >
-          Back To Trip List
-        </Link>
+        <PrimaryBtn path='/showTripList' name='Back To Trip List' />
       </div>
       <div>{TripItem}</div>
 
-      <div className="flex">
+      <div className="flex my-8">
         <button
           type="button"
-          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded text-center m-auto"
           onClick={onDeleteClick.bind(trip._id)}
         >
           Delete Trip
         </button>
-
-        <Link
-          to={`/edit-trip/${trip._id}`}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        >
-          Edit Trip
-        </Link>
+        <PrimaryBtn path={`/edit-trip/${trip._id}`} name='Edit Trip' />
       </div>
     </div>
   );
