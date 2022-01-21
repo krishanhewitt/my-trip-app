@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const CreateTrip = () => {
+export default function CreateTrip() {
   const navigate = useNavigate();
 
   const [newTrip, setNewTrip] = useState({
@@ -16,7 +16,7 @@ const CreateTrip = () => {
   const onChange = (e) => {
     setNewTrip({
       ...newTrip,
-      [e.target.name]: e.target.value 
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -57,11 +57,7 @@ const CreateTrip = () => {
       <h1 className="text-center text-2xl mt-4">Add Trip</h1>
       <p className="text-center text-md">Create new trip</p>
       <div>
-        <form
-          className="flex justify-center"
-          noValidate
-          onSubmit={onSubmit}
-        >
+        <form className="flex justify-center" noValidate onSubmit={onSubmit}>
           {/* Name Field */}
           <div className="mx-3 my-6">
             <div className="flex">
@@ -167,6 +163,4 @@ const CreateTrip = () => {
       </div>
     </div>
   );
-};
-
-export default CreateTrip;
+}

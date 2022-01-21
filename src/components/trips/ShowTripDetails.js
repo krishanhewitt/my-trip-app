@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import PrimaryBtn from "../common/PrimaryBtn";
 
-const ShowTripDetails = () => {
+export default function ShowTripDetails() {
   const [trip, setTrip] = useState({});
 
   const location = useLocation();
@@ -93,5 +93,3 @@ const ShowTripDetails = () => {
     </div>
   );
 };
-
-export default ShowTripDetails;

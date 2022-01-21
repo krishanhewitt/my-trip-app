@@ -1,7 +1,7 @@
 import { Home, Compass, Settings } from "react-feather";
 import { Link } from "react-router-dom";
 
-function NavBar() {
+export default function NavBar() {
   return (
     <div>
       {/* Desktop Navbar */}
@@ -53,5 +53,3 @@ function NavBar() {
     </div>
   );
 }
-
-export default NavBar;

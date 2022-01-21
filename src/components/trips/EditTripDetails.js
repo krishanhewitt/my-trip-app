@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const CreateTrip = (props) => {
+export default function EditTripDetails(props) {
   const navigate = useNavigate();
 
   const [newTrip, setNewTrip] = useState({
@@ -168,5 +168,3 @@ const CreateTrip = (props) => {
     </div>
   );
 };
-
-export default CreateTrip;

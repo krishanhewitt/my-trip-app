@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import TripCard from "./TripCard";
 import PrimaryBtn from "../common/PrimaryBtn";
 
-const ShowTripList = () => {
+export default function ShowTripList() {
 
   const [trips, setTrips] = useState([]);
 
@@ -42,5 +42,3 @@ const ShowTripList = () => {
       </div>
     );
 }
-
-export default ShowTripList;

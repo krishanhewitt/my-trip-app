@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const TripCard = (props) => {
+export default function TripCard(props) {
     const trip  = props.trip;
     const parsedStartDate = new Date(trip.startDate).toISOString().slice(0, 10);
     const parsedEndDate = new Date(trip.endDate).toISOString().slice(0, 10);
@@ -17,5 +17,3 @@ const TripCard = (props) => {
         </div>
     )
 };
-
-export default TripCard;

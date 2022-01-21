@@ -6,8 +6,7 @@ import ShowTripDetails from './components/trips/ShowTripDetails'
 import Settings from './components/settings/Settings'
 import CreateTrip from './components/trips/CreateTrip'
 
-
-function App() {
+export default function App() {
   return (
     <div>
       <BrowserRouter>        
@@ -18,13 +17,10 @@ function App() {
             <Route path="showTripList" element={<ShowTripList />} />
             <Route path="createtrip" element={<CreateTrip />} />
             <Route path="settings" element={<Settings />} />
-            <Route path="show-trip/:id" element={<ShowTripDetails />} />
-            
+            <Route path="show-trip/:id" element={<ShowTripDetails />} />            
           </Routes>
         </div>
       </BrowserRouter>
     </div>
   )
 }
-
-export default App;
