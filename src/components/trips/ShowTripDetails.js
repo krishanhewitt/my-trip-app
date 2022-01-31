@@ -1,20 +1,18 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import PrimaryBtn from "../common/PrimaryBtn";
 
 export default function ShowTripDetails() {
+  //declare hook variables
   const [trip, setTrip] = useState({});
-
-  const location = useLocation();
-  const { tripID } = location.state;
-
+  const params = useParams();
   const navigate = useNavigate();
 
   //get trip details from db
   useEffect(() => {
     axios
-      .get("http://localhost:8082/api/trips/" + tripID)
+      .get("http://localhost:8082/api/trips/" + params.tripID)
       .then((res) => {
         setTrip(res.data);
       })
@@ -26,10 +24,10 @@ export default function ShowTripDetails() {
   //delete trip
   const onDeleteClick = useCallback(() => {
     axios
-      .delete("http://localhost:8082/api/trips/" + tripID)
+      .delete("http://localhost:8082/api/trips/" + params.tripID)
       .then((res) => {
         console.log("successfully deleted");
-        navigate("/showTripList");
+        navigate("/showTrips");
       })
       .catch((err) => {
         console.log("ShowTripDetails Error - Trip has not been deleted");
@@ -76,7 +74,7 @@ export default function ShowTripDetails() {
       <h1 className="text-center text-2xl mt-4">{trip.name}</h1>
       <p className="text-center text-md">View Trip Info</p>
       <div className="flex">
-        <PrimaryBtn path='/showTripList' name='Back To Trip List' />
+        <PrimaryBtn path="/my-trips" name="Back To Trip List" />
       </div>
       <div>{TripItem}</div>
 
@@ -88,8 +86,8 @@ export default function ShowTripDetails() {
         >
           Delete Trip
         </button>
-        <PrimaryBtn path={`/edit-trip/${trip._id}`} name='Edit Trip' />
+        <PrimaryBtn path={`/edit-trip/${trip._id}`} name="Edit Trip" />
       </div>
     </div>
   );
-};
+}

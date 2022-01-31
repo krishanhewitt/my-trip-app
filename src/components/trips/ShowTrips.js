@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import TripCard from "./TripCard";
 import PrimaryBtn from "../common/PrimaryBtn";
 
-export default function ShowTripList() {
+export default function ShowTrips() {
 
   const [trips, setTrips] = useState([]);
 
@@ -17,7 +16,7 @@ export default function ShowTripList() {
       setTrips(res.data)
     })
     .catch((err) => {
-      console.log("Error from ShowTripList");
+      console.log("Error from ShowTrips");
     });
   }, []);
 
@@ -29,13 +28,9 @@ export default function ShowTripList() {
       tripList = trips.map((trip, k) => <TripCard trip={trip} key={k} />);
     }
   
-    //display 'My Trips' page 
+    //return list of TripCards 
     return (
       <div>
-        <div className="flex flex-col">
-          <h1 className="text-center text-2xl my-4">My Trips</h1>
-          <PrimaryBtn path="/createtrip" name="Add a new Trip" />
-        </div>
         <div className="flex">
             {tripList}
         </div>
