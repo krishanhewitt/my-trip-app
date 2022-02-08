@@ -1,13 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from './components/NavBar'
-import Home from './components/home_page/Home'
-import ShowTripList from './components/trips_page/ShowTripList'
-import ShowTripDetails from './components/trips_page/ShowTripDetails'
-import Settings from './components/settings_page/Settings'
-import CreateTrip from './components/trips_page/CreateTrip'
+import Home from './components/home/Home'
+import MyTrips from './components/trips/MyTrips'
+import ShowTripDetails from './components/trips/ShowTripDetails'
+import Settings from './components/settings/Settings'
+import CreateTrip from './components/trips/CreateTrip'
+import EditTrip from './components/trips/EditTrip'
 
-
-function App() {
+export default function App() {
   return (
     <div>
       <BrowserRouter>        
@@ -15,16 +15,14 @@ function App() {
         <div className="content mb-20 sm:mb-0">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="showTripList" element={<ShowTripList />} />
-            <Route path="createtrip" element={<CreateTrip />} />
+            <Route path="my-trips" element={<MyTrips />} />            
+            <Route path="show-trip/:tripID" element={<ShowTripDetails />} />
+            <Route path="edit-trip/:tripID" element={<EditTrip />} />
+            <Route path="add-trip" element={<CreateTrip />} />              
             <Route path="settings" element={<Settings />} />
-            <Route path="show-trip/:id" element={<ShowTripDetails />} />
-            
           </Routes>
         </div>
       </BrowserRouter>
     </div>
   )
 }
-
-export default App;

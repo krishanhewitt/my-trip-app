@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const TripCard = (props) => {
+export default function TripCard(props) {
     const trip  = props.trip;
     const parsedStartDate = new Date(trip.startDate).toISOString().slice(0, 10);
     const parsedEndDate = new Date(trip.endDate).toISOString().slice(0, 10);
 
     return(
-        <div className="card-container w-50 m-4 text-center rounded-lg shadow-xl">
+        <div className="card-container w-25 m-4 text-center rounded-lg shadow-xl">
             <p className='font-medium'>
                 <Link to={`/show-trip/${trip._id}`} state={{tripID: trip._id}}>{ trip.name }</Link>
             </p>
@@ -17,5 +17,3 @@ const TripCard = (props) => {
         </div>
     )
 };
-
-export default TripCard;
