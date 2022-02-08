@@ -13,6 +13,9 @@ export default function EditTrip() {
       axios
         .get("http://localhost:8082/api/trips/" + params.tripID)
         .then((res) => {
+          //format dates out of UTC
+          res.data.startDate = new Date(res.data.startDate).toLocaleDateString("en-CA");
+          res.data.endDate = new Date(res.data.endDate).toLocaleDateString("en-CA");      
           setTrip(res.data);
         })
         .catch((err) => {
@@ -32,7 +35,7 @@ export default function EditTrip() {
 
     //make PUT request to API
     axios
-      .put("http://localhost:8082/api/trips", data)
+      .put("http://localhost:8082/api/trips/" + params.tripID, data)
       .then((res) => {
         console.log("Success! -> Response: " + JSON.stringify(res));
         navigate("/my-trips");
@@ -48,7 +51,7 @@ export default function EditTrip() {
       <p className="text-center text-md">Change trip details</p>
       <TripForm
         buttonLabel='Update'
-        handleSubmit={onSubmit}
+        onSubmit={onSubmit}
         trip={trip} />
     </div>
   );

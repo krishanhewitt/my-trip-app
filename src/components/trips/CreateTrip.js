@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import TripForm from "./TripForm";
 
 export default function CreateTrip() {
   const navigate = useNavigate();
+  const [trip, setTrip] = useState({});
 
   const onSubmit = (newTrip) => {
     //create the object to insert
@@ -33,8 +34,9 @@ export default function CreateTrip() {
       <p className="text-center text-md">Create new trip</p>
       <TripForm
         buttonLabel='Create'
-        handleSubmit={onSubmit}
-        trip={undefined} />
+        onSubmit={onSubmit}
+        trip={undefined}
+        />
     </div>
   );
 }

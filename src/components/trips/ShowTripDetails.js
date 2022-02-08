@@ -26,8 +26,7 @@ export default function ShowTripDetails() {
     axios
       .delete("http://localhost:8082/api/trips/" + params.tripID)
       .then((res) => {
-        console.log("successfully deleted");
-        navigate("/showTrips");
+        navigate("/my-trips");
       })
       .catch((err) => {
         console.log("ShowTripDetails Error - Trip has not been deleted");

@@ -1,13 +1,21 @@
 import React, { useState, useEffect } from "react";
+import FormInput from "../common/FormInput";
+import FormLabel from "../common/FormLabel";
 
 export default function TripForm(props) {
-  //use passed in values (if updating), otherwise just initialize state vars as empty strings
-  const [trip, setTrip] = useState({
-    name: props.trip ? props.trip.name : "",
-    startDate: props.trip ? new Date(props.trip.startDate).toLocaleDateString('en-CA') : "",
-    endDate: props.trip ? new Date(props.trip.endDate).toLocaleDateString('en-CA') : "",
-    origin: props.trip ? props.trip.origin : "",
-    destination: props.trip ? props.trip.destination : "",
+  const[trip, setTrip] = useState({
+        name: '',
+        startDate: '',
+        endDate: '',
+        origin: '',
+        destination: '',
+      });
+
+  useEffect(() => {
+    //if trip data is passed in, then prefill input fields
+    if (props.trip && Object.values(trip).every(x => x === '')) {
+      setTrip(props.trip);
+    }
   });
 
   //keep state up to date when user changes input values
@@ -20,9 +28,8 @@ export default function TripForm(props) {
 
   //validate input and send to back end
   const onSubmit = (e) => {
-    console.log("submited the following: " + JSON.stringify(trip));
     e.preventDefault();
-    props.handleSubmit(trip);
+    props.onSubmit(trip);
   };
 
   return (
@@ -32,19 +39,12 @@ export default function TripForm(props) {
         <div className="mx-3 my-6">
           <div className="flex">
             <div className="w-full px-3 pb-3">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                htmlFor="name"
-              >
-                Trip Name
-              </label>
-              <input
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              <FormLabel htmlFor="name" title="Trip Name" />
+              <FormInput
                 type="text"
                 placeholder="Eg. Italy 2015"
                 name="name"
-                required
-                defaultValue={trip.name}
+                value={trip.name}
                 onChange={onChange}
               />
             </div>
@@ -53,38 +53,24 @@ export default function TripForm(props) {
           <div className="flex flex-col sm:flex-row">
             {/* Origin Field */}
             <div className="w-full md:w-1/2 px-3 pb-6">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                htmlFor="origin"
-              >
-                Trip Origin
-              </label>
-              <input
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              <FormLabel htmlFor="origin" title="Trip Origin" />
+              <FormInput
                 type="text"
                 placeholder="Eg. Kelowna CA"
                 name="origin"
-                required
-                defaultValue={trip.origin}
+                value={trip.origin}
                 onChange={onChange}
               />
             </div>
 
             {/* Destination Field */}
             <div className="w-full md:w-1/2 px-3 pb-6">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                htmlFor="destination"
-              >
-                Trip Destination
-              </label>
-              <input
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              <FormLabel htmlFor="destination" title="Trip Destination" />
+              <FormInput
                 type="text"
                 placeholder="Eg. Venice IT"
                 name="destination"
-                required
-                defaultValue={trip.destination}
+                value={trip.destination}
                 onChange={onChange}
               />
             </div>
@@ -93,38 +79,24 @@ export default function TripForm(props) {
           <div className="flex flex-col sm:flex-row">
             {/* Start Date Field */}
             <div className="w-full md:w-1/2 px-3 pb-6">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                htmlFor="startDate"
-              >
-                Trip Start Date
-              </label>
-              <input
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              <FormLabel htmlFor="startDate" title="Trip Start Date" />
+              <FormInput
                 type="date"
                 placeholder="Start Date"
                 name="startDate"
-                required
-                defaultValue={trip.startDate}
+                value={trip.startDate}
                 onChange={onChange}
               />
             </div>
 
             {/* End Date Field */}
             <div className="w-full md:w-1/2 px-3 pb-6">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                htmlFor="endDate"
-              >
-                Trip End Date
-              </label>
-              <input
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              <FormLabel htmlFor="endDate" title="Trip End Date" />
+              <FormInput
                 type="date"
                 placeholder="End Date"
                 name="endDate"
-                required
-                defaultValue={trip.endDate}
+                value={trip.endDate}
                 onChange={onChange}
               />
             </div>
