@@ -20,10 +20,10 @@ export default function TripForm(props) {
 
   //keep state up to date when user changes input values
   const onChange = (e) => {
-    setTrip({
-      ...trip,
+    setTrip(prevState => ({
+      ...prevState,
       [e.target.name]: e.target.value,
-    });
+    }));
   };
 
   //validate input and send to back end

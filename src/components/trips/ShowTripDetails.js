@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import PrimaryBtn from "../common/PrimaryBtn";
@@ -22,7 +22,7 @@ export default function ShowTripDetails() {
   }, []);
 
   //delete trip
-  const onDeleteClick = useCallback(() => {
+  const onDeleteClick = () => {
     axios
       .delete("http://localhost:8082/api/trips/" + params.tripID)
       .then((res) => {
@@ -31,7 +31,7 @@ export default function ShowTripDetails() {
       .catch((err) => {
         console.log("ShowTripDetails Error - Trip has not been deleted");
       });
-  });
+  };
 
   //build trip detail table
   let TripItem = (
