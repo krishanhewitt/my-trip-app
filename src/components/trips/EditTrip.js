@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import TripForm from "./TripForm";
+import CircleSpinner from "../common/CircleSpinner";
 
 export default function EditTrip() {
-  const [trip, setTrip] = useState({});
+  const [trip, setTrip] = useState(undefined);
   const params = useParams();
   const navigate = useNavigate();
 
@@ -46,6 +47,7 @@ export default function EditTrip() {
   };
 
   return (
+    trip ?
     <div>
       <h1 className="text-center text-2xl mt-4">Edit Trip</h1>
       <p className="text-center text-md">Change trip details</p>
@@ -53,6 +55,10 @@ export default function EditTrip() {
         buttonLabel='Update'
         onSubmit={onSubmit}
         trip={trip} />
+    </div>
+    :
+    <div>
+      {/* <CircleSpinner /> */}
     </div>
   );
 };
