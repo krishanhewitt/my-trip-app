@@ -56,12 +56,12 @@ export default function ShowTripDetails() {
           <tr>
             <th scope="row">4</th>
             <td>Start Date</td>
-            <td>{trip.startDate}</td>
+            <td>{new Date(trip.startDate).toLocaleDateString("en-CA")}</td>
           </tr>
           <tr>
             <th scope="row">5</th>
             <td>End Date</td>
-            <td>{trip.endDate}</td>
+            <td>{new Date(trip.endDate).toLocaleDateString("en-CA")}</td>
           </tr>
         </tbody>
       </table>
@@ -72,11 +72,7 @@ export default function ShowTripDetails() {
     <div>
       <h1 className="text-center text-2xl mt-4">{trip.name}</h1>
       <p className="text-center text-md">View Trip Info</p>
-      <div className="flex">
-        <PrimaryBtn path="/my-trips" name="Back To Trip List" />
-      </div>
       <div>{TripItem}</div>
-
       <div className="flex my-8">
         <button
           type="button"
