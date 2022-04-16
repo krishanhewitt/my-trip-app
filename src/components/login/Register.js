@@ -4,7 +4,7 @@ import axios from "axios";
 import * as yup from "yup";
 import FormField from "../common/FormField";
 
-export default function Login() {
+export default function Register(props) {
   const navigate = useNavigate();
   const [user, setUser] = useState({
     nickname: "",
@@ -31,29 +31,30 @@ export default function Login() {
     e.preventDefault();
     userSchema.isValid(user).then(function (valid) {
       if (valid) {
-        //create the object to insert
-        const data = {
+        const registerData = {
           email: user.email,
           password: user.password,
           nickname: user.nickname,
         };
+
         //make POST request to API
-        // axios
-        //   .post("http://localhost:8082/api/trips", data)
-        //   .then((res) => {
-        //     console.log("Success! -> Response: " + JSON.stringify(res));
-        //     navigate("/my-trips");
-        //   })
-        //   .catch((err) => {
-        //     console.log("Error in CreateTrip: " + err);
-        //   });
+        axios
+          .post("http://localhost:8082/api/users/register", registerData)
+          .then((res) => {
+            localStorage.setItem("token", res.data.token);
+            props.setUserToken();
+            navigate("/home");
+          })
+          .catch((err) => {
+            console.log("Error during registration: " + err);
+          });
       }
     });
   };
 
   return (
     <div>
-      <h1 className="text-center text-2xl mt-4">Signup</h1>
+      <h1 className="text-center text-2xl mt-4">Register</h1>
       <form className="flex justify-center" noValidate onSubmit={onSubmit}>
         <div className="mx-3 my-6">
           {/* Email Field */}
@@ -97,7 +98,7 @@ export default function Login() {
               errMsgText="Please enter a nickname up to 80 characters long"
             />
           </div>
-          {/* Create/Update Button */}
+          {/* Create Button */}
           <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-center m-auto flex">
             Create an Account
           </button>

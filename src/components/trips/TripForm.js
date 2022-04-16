@@ -47,21 +47,19 @@ export default function TripForm(props) {
   return (
     <div>
       <form className="flex justify-center" noValidate onSubmit={onSubmit}>
-        {/* Name Field */}
         <div className="mx-3 my-6">
-          <div className="flex">
-            <div className="w-full px-3 pb-3">
-              <FormField
-                title="Name"
-                type="text"
-                placeholder="Eg. Italy 2015"
-                name="name"
-                value={trip.name}
-                onChange={onChange}
-                validation={yup.reach(tripSchema, "name")}
-                errMsgText="Please enter a trip name between 2 and 80 characters"
-              />
-            </div>
+          {/* Name Field */}
+          <div className="w-full px-3 pb-3 flex-col">
+            <FormField
+              title="Name"
+              type="text"
+              placeholder="Eg. Italy 2015"
+              name="name"
+              value={trip.name}
+              onChange={onChange}
+              validation={yup.reach(tripSchema, "name")}
+              errMsgText="Please enter a trip name between 2 and 80 characters"
+            />
           </div>
 
           <div className="flex flex-col sm:flex-row">
@@ -124,6 +122,7 @@ export default function TripForm(props) {
             </div>
           </div>
 
+          {/* Create/Update Button */}
           <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-center m-auto flex">
             {props.buttonLabel}
           </button>
