@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import TripForm from "./TripForm";
-import CircleSpinner from "../common/CircleSpinner";
 
 export default function EditTrip() {
   const [trip, setTrip] = useState(undefined);

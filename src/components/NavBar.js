@@ -1,7 +1,7 @@
-import { Home, Compass, Settings } from "react-feather";
+import { Home, Compass, Settings, UserPlus, LogIn } from "react-feather";
 import { Link } from "react-router-dom";
 
-export default function NavBar() {
+export default function NavBar(props) {
   return (
     <div>
       {/* Desktop Navbar */}
@@ -9,15 +9,28 @@ export default function NavBar() {
         <div className="w-full flex justify-between">
           <Link to="/">RememberMyTrip</Link>
           <ul className="flex">
-            <li className="px-4">
-              <Link to="/">Home</Link>
-            </li>
-            <li className="px-4">
-              <Link to="/my-trips">My Trips</Link>
-            </li>
-            <li className="px-4">
-              <Link to="/settings">Settings</Link>
-            </li>
+            {props.isLoggedIn ? (
+              <>
+                <li className="px-4">
+                  <Link to="/home">Home</Link>
+                </li>
+                <li className="px-4">
+                  <Link to="/my-trips">My Trips</Link>
+                </li>
+                <li className="px-4">
+                  <Link to={`/settings/${props.userInfo.id}`}>Settings</Link>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="px-4">
+                  <Link to="/register">Register</Link>
+                </li>
+                <li className="px-4">
+                  <Link to="/login">Login</Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </nav>
@@ -29,24 +42,43 @@ export default function NavBar() {
             RememberMyTrip
           </Link>
           <ul className="flex justify-around px-2 flex-1">
-            <li className="flex text-lg">
-              <Link to="/">
-                <Home size={24} className="m-auto" />
-                Home
-              </Link>
-            </li>
-            <li className="flex text-lg">
-              <Link to="/my-trips">
-                <Compass size={24} className="m-auto" />
-                My Trips
-              </Link>
-            </li>
-            <li className="flex text-lg">
-              <Link to="/settings">
-                <Settings size={24} className="m-auto" />
-                Settings
-              </Link>
-            </li>
+            {props.isLoggedIn ? (
+              <>
+                <li className="flex text-lg">
+                  <Link to="/home">
+                    <Home size={24} className="m-auto" />
+                    Home
+                  </Link>
+                </li>
+                <li className="flex text-lg">
+                  <Link to="/my-trips">
+                    <Compass size={24} className="m-auto" />
+                    My Trips
+                  </Link>
+                </li>
+                <li className="flex text-lg">
+                  <Link to="/settings">
+                    <Settings size={24} className="m-auto" />
+                    Settings
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link to="/register">
+                    <UserPlus size={24} className="m-auto" />
+                    Register
+                  </Link>
+                </li>
+                <li className="flex text-lg">
+                  <Link to="/login">
+                    <LogIn size={24} className="m-auto" />
+                    Login
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </nav>

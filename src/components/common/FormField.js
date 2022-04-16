@@ -4,10 +4,12 @@ export default function FormField(props) {
   const [errMsg, showErrMsg] = useState(false);
 
   const validCheck = (e) => {
-    const schema = props.validation;
-    schema.isValid(e.target.value).then(function (valid) {
-      showErrMsg(valid ? false : true);
-    });
+    if(props.validation) {
+      const schema = props.validation;
+      schema.isValid(e.target.value).then(function (valid) {
+        showErrMsg(valid ? false : true);
+      });
+    }
   };
 
   return (
