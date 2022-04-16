@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import TripForm from "./TripForm";
 
 export default function CreateTrip() {
   const navigate = useNavigate();
-  const [trip, setTrip] = useState({});
 
   const onSubmit = (newTrip) => {
     //create the object to insert

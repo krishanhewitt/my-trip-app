@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import TripCard from "./TripCard";
-import PrimaryBtn from "../common/PrimaryBtn";
 
 export default function ShowTrips() {
-
   const [trips, setTrips] = useState([]);
 
   useEffect(() => {
