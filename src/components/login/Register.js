@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useAuth from "./useAuth";
 import axios from "axios";
 import * as yup from "yup";
 import FormField from "../common/FormField";
 
-export default function Register(props) {
+export default function Register() {
   const navigate = useNavigate();
+  const { setUserToken } = useAuth();
   const [user, setUser] = useState({
     nickname: "",
     email: "",
@@ -42,7 +44,7 @@ export default function Register(props) {
           .post("http://localhost:8082/api/users/register", registerData)
           .then((res) => {
             localStorage.setItem("token", res.data.token);
-            props.setUserToken();
+            setUserToken();
             navigate("/home");
           })
           .catch((err) => {
