@@ -1,5 +1,5 @@
 import { Home, Compass, Settings, UserPlus, LogIn } from "react-feather";
-import useAuth from "./login/useAuth";
+import useAuth from "./user-auth/useAuth";
 import { Link } from "react-router-dom";
 
 export default function NavBar() {

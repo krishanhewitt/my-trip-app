@@ -45,7 +45,7 @@ export default function Register() {
           .then((res) => {
             localStorage.setItem("token", res.data.token);
             setUserToken();
-            navigate("/home");
+            //navigate("/home");
           })
           .catch((err) => {
             console.log("Error during registration: " + err);

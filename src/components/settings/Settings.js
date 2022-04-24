@@ -1,5 +1,5 @@
 import React from "react";
-import useAuth from "../login/useAuth";
+import useAuth from "../user-auth/useAuth";
 import { useParams, useNavigate } from "react-router-dom";
 
 export default function Settings() {

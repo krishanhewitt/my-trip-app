@@ -12,17 +12,25 @@ export default function AuthProvider({ children }) {
   };
   const [token, setToken] = useState(emptyToken);
 
-  const setUserToken = () => {
-    axios
-      .get("http://localhost:8082/api/users/isUserAuth", {
-        headers: {
-          "x-access-token": localStorage.getItem("token"),
-        },
-      })
-      .then((res) => {
-        if (res.data.isLoggedIn) setToken(res.data);
-      })
-      .catch((err) => console.log(err));
+  const setUserToken = async () => {
+    try {
+      let loggedIn = false;
+      let res = await axios
+        .get("http://localhost:8082/api/users/isUserAuth", {
+          headers: {
+            "x-access-token": localStorage.getItem("token"),
+          },
+        })
+        .then((res) => {
+          if (res.data.isLoggedIn) {
+            setToken(res.data);
+            loggedIn = res.data.isLoggedIn;
+          } 
+        })
+        return loggedIn;
+    } catch (err) {
+      console.error(err)
+    };
   };
 
   const removeUserToken = () => {
