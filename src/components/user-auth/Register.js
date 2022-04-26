@@ -41,11 +41,11 @@ export default function Register() {
 
         //make POST request to API
         axios
-          .post("http://localhost:8082/api/users/register", registerData)
-          .then((res) => {
+          .post("http://localhost:8082/api/users/register", registerData).then((res) => {
             localStorage.setItem("token", res.data.token);
-            setUserToken();
-            //navigate("/home");
+            setUserToken().then(() => {
+              navigate("/home");
+            });
           })
           .catch((err) => {
             console.log("Error during registration: " + err);

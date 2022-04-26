@@ -32,7 +32,7 @@ export default function Login() {
     //send login details to API and receive JWT
     axios.post("http://localhost:8082/api/users/login", data).then((res) => {
       localStorage.setItem("token", res.data.token);
-      setUserToken().then((res) => {
+      setUserToken().then(() => {
         navigate("/home");
       });
     });
