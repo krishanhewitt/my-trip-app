@@ -5,8 +5,8 @@ export default function NavBar(props) {
   return (
     <div>
       {/* Desktop Navbar */}
-      <nav className="bg-gray-100 justify-between py-4 px-8 hidden sm:flex">
-        <div className="w-full flex justify-between">
+      <nav className="bg-gradient-to-r from-sky-500 to-indigo-500 justify-between py-4 px-8 hidden sm:flex">
+        <div className="w-full flex justify-between leading-normal tracking-normal text-white">
           <Link to="/">RememberMyTrip</Link>
           <ul className="flex">
             {props.isLoggedIn ? (

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import mtn from "../../devImages/mountain.jpg";
+import mtn from "../../devImages/mountain.png";
 
 export default function TripCard(props) {
   const trip = props.trip;
