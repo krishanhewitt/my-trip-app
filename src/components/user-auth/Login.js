@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useAuth from "./useAuth";
 import axios from "axios";
 import FormField from "../common/FormField";
 
-export default function Login(props) {
+export default function Login() {
   const navigate = useNavigate();
+  const { setUserToken } = useAuth();
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -30,8 +32,9 @@ export default function Login(props) {
     //send login details to API and receive JWT
     axios.post("http://localhost:8082/api/users/login", data).then((res) => {
       localStorage.setItem("token", res.data.token);
-      props.setUserToken();
-      navigate("/home");
+      setUserToken().then(() => {
+        navigate("/home");
+      });
     });
   };
 

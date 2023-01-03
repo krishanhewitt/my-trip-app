@@ -1,13 +1,15 @@
 import React from "react";
+import useAuth from "../user-auth/useAuth";
 import { useParams, useNavigate } from "react-router-dom";
 
-export default function Settings(props) {
+export default function Settings() {
+  const { removeUserToken } = useAuth();
   const params = useParams();
   const navigate = useNavigate();
 
   const logout = () => {
     localStorage.removeItem("token");
-    props.onLogout();
+    removeUserToken();
     navigate("/");
   };
 
